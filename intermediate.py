@@ -31,5 +31,23 @@ df2=df2.rename(columns={'acronym':'organization_acronym'})
 
 #conn = connect('ecsel_database.db')
 country_list = df2['Country']
+country_acronyms = {'Belgium': 'BE', 'Bulgaria': 'BG', 'Czechia': 'CZ', 'Denmark': 'DK', 'Germany':
+'DE', 'Estonia': 'EE', 'Ireland': 'IE','Greece': 'EL', 'Spain': 'ES', 'France': 'FR', 'Croatia':
+'HR', 'Italy': 'IT', 'Cyprus': 'CY', 'Latvia': 'LV', 'Lithuania': 'LT','Luxembourg': 'LU',
+'Hungary': 'HU', 'Malta': 'MT', 'Netherlands': 'NL', 'Austria': 'AT', 'Poland': 'PL', 'Portugal':
+'PT','Romania': 'RO', 'Slovenia': 'SI', 'Slovakia': 'SK', 'Finland': 'FI', 'Sweden': 'SE'}
+countname = st.selectbox('Choose an option', country_acronyms.keys()) #input by the user of the name of the country
+def country_to_acronym(countname): #defining a function
+  found = False #setting parameter = False, when True it is when the acronym is found.
+  while found == False: #while acronym is not found
+    if countname in country_acronyms.keys(): #if the country name is in the key of the dictionary
+      value = country_acronyms[countname] #getting the acronym associated with the key (name of the country)
+      found = True #set parameter to trye
+    else:
+      print("Not a country on the list, try again: ") #if the country doesn't exist in the database it will ask the user again to try again
+      found = False
+    return(value)
 
-option = st.selectbox('Choose an option', ['a','b','c'])
+#print(value) #check it is getting the right thing
+
+#print(country_to_acronym(countname)) 
