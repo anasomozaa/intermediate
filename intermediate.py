@@ -30,13 +30,13 @@ df2=df2.rename(columns={'acronym':'organization_acronym'})
 """Part 3:"""
 
 #conn = connect('ecsel_database.db')
-country_list = df2['Country']
+country_list = df2['Country'] #selecting the country names list
 country_acronyms = {'Belgium': 'BE', 'Bulgaria': 'BG', 'Czechia': 'CZ', 'Denmark': 'DK', 'Germany':
 'DE', 'Estonia': 'EE', 'Ireland': 'IE','Greece': 'EL', 'Spain': 'ES', 'France': 'FR', 'Croatia':
 'HR', 'Italy': 'IT', 'Cyprus': 'CY', 'Latvia': 'LV', 'Lithuania': 'LT','Luxembourg': 'LU',
 'Hungary': 'HU', 'Malta': 'MT', 'Netherlands': 'NL', 'Austria': 'AT', 'Poland': 'PL', 'Portugal':
 'PT','Romania': 'RO', 'Slovenia': 'SI', 'Slovakia': 'SK', 'Finland': 'FI', 'Sweden': 'SE'}
-countname = st.selectbox('Choose an option', country_acronyms.keys()) #input by the user of the name of the country
+countname = st.selectbox('Choose a Country', country_acronyms.keys()) #input by the user of the name of the country
 def country_to_acronym(countname): #defining a function
   found = False #setting parameter = False, when True it is when the acronym is found.
   while found == False: #while acronym is not found
@@ -48,6 +48,6 @@ def country_to_acronym(countname): #defining a function
       found = False
     return(value)
 
-#print(value) #check it is getting the right thing
+print(value) #check it is getting the right thing
 
 #print(country_to_acronym(countname)) 
