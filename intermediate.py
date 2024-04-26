@@ -30,6 +30,7 @@ df2=df2.rename(columns={'acronym':'organization_acronym'})
 """Part 3:"""
 
 #conn = connect('ecsel_database.db')
+
 country_list = df2['Country'] #selecting the country names list
 country_acronyms = {'Belgium': 'BE', 'Bulgaria': 'BG', 'Czechia': 'CZ', 'Denmark': 'DK', 'Germany':
 'DE', 'Estonia': 'EE', 'Ireland': 'IE','Greece': 'EL', 'Spain': 'ES', 'France': 'FR', 'Croatia':
@@ -48,6 +49,6 @@ def country_to_acronym(countname): #defining a function
       found = False
     return(value)
 
-print(value) #check it is getting the right thing
+st.write(value) #check it is getting the right thing
 
 #print(country_to_acronym(countname)) 
