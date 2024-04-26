@@ -54,6 +54,6 @@ st.write('The selected country is:', acronym_c) #calling the function to display
 
 @st.cache
 def display_dataframe():
-  df2[participants]
-  return(df2)
+  df3=df2[participants]
+  return(df3)
 
