@@ -55,7 +55,7 @@ st.write('The selected country is:', acronym_c) #calling the function to display
 #st.write(display_dataframe())
 @st.cache
 def display_dataframe():
-    df = df2['p']
+    df = df2['name']
     return(df)
 
 dataframe1 = display_dataframe()
