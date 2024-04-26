@@ -52,10 +52,12 @@ def country_to_acronym(countname): #defining a function
 acronym_c = country_to_acronym(countname)
 st.write('The selected country is:', acronym_c) #calling the function to display to display the acronym 
 
+st.write(display_dataframe())
 @st.cache
 def display_dataframe():
-  df3=df2['p']
-  return(df3)
+    df = df2['p']
+    return(df)
 
-st.write(display_dataframe())
+dataframe1 = display_dataframe()
+st.write(dataframe1)
 
