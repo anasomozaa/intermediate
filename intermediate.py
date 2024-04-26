@@ -17,15 +17,15 @@ from sqlite3 import connect
 
 import streamlit as st
 
-excel_files= ['projects.xlsx', 'participants.xlsx', 'countries.xlsx']
-dataframes= [pd.read_excel(file)for file in excel_files]
+#excel_files= ['projects.xlsx', 'participants.xlsx', 'countries.xlsx']
+#dataframes= [pd.read_excel(file)for file in excel_files]
 
-conn= sqlite3.connect('ecsel_database.db')
-for df, file_name in zip(dataframes, excel_files):
-  table_name=file_name.split('.')[0]
-  df.to_sql(table_name, conn, if_exists='replace', index=False)
+#conn= sqlite3.connect('ecsel_database.db')
+#for df, file_name in zip(dataframes, excel_files):
+  #table_name=file_name.split('.')[0]
+ # df.to_sql(table_name, conn, if_exists='replace', index=False)
 
-conn.close()
+#conn.close()
 
 conn= connect('ecsel_database.db')
 df_project= pd.read_sql ('SELECT * FROM PROJECTS', conn)
