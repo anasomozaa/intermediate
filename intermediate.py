@@ -51,3 +51,9 @@ def country_to_acronym(countname): #defining a function
 
 acronym_c = country_to_acronym(countname)
 st.write('The selected country is:', acronym_c) #calling the function to display to display the acronym 
+
+@st.cache
+def display_dataframe():
+  df2[participants]
+  return(df2)
+
