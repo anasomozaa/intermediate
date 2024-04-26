@@ -57,5 +57,5 @@ def display_dataframe():
   df3=df2['p']
   return(df3)
 
-st.write(display_dataframe(df3))
+st.write(display_dataframe())
 
