@@ -49,6 +49,6 @@ def country_to_acronym(countname): #defining a function
       found = False
     return(value)
 
-st.write(value) #check it is getting the right thing
+#st.write(value) #check it is getting the right thing
 
-#print(country_to_acronym(countname)) 
+st.write(country_to_acronym(countname))
