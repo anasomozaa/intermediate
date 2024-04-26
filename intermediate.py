@@ -9,7 +9,7 @@ Original file is located at
 
 import pandas as pd
 import numpy as np
-import matplotlib.pyplot
+#import matplotlib.pyplot
 import sqlite3
 
 from sqlite3 import connect
