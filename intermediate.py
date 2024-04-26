@@ -14,7 +14,6 @@ import sqlite3
 
 from sqlite3 import connect
 
-pip install streamlit
 
 import streamlit as st
 
