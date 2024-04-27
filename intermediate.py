@@ -59,7 +59,7 @@ def display_dataframe(df2, acronym_c):
     participants = df2.groupby(['name','shortName', 'activityType', 'organizationURL']).agg({'ecContribution':['sum']})
     return(participants) #esto no funciona
 
-dataframe1 = display_dataframe()
+dataframe1 = display_dataframe(df2,acronym_c)
 st.write(dataframe1)
 
 
