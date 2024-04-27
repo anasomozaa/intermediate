@@ -56,7 +56,7 @@ st.write('The selected country is:', acronym_c) #calling the function to display
 @st.cache
 def display_dataframe():
     df2 = df2[df2['Country'] == country_to_acronym(countname)]
-    participants = df2.groupby(['name','shortName', 'activityType', 'organizationURL']).agg({'ecContribution':['sum']})
+    participants = pd.Dataframe(df2.groupby(['name','shortName', 'activityType', 'organizationURL']).agg({'ecContribution':['sum']}))
     return(participants) #esto no funciona
 
 dataframe1 = display_dataframe()
