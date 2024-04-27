@@ -52,10 +52,10 @@ def country_to_acronym(countname): #defining a function
 acronym_c = country_to_acronym(countname)
 st.write('The selected country is:', acronym_c) #calling the function to display to display the acronym 
 
-#st.write(display_dataframe())
+df2 = df2[df2['Country'] == country_to_acronym(countname)]
+
 @st.cache
 def display_dataframe():
-    df2 = df2[df2['Country'] == country_to_acronym(countname)]
     participants = pd.Dataframe(df2.groupby(['name','shortName', 'activityType', 'organizationURL']).agg({'ecContribution':['sum']}))
     return(participants) #esto no funciona
 
