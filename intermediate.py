@@ -57,7 +57,7 @@ st.write('The selected country is:', acronym_c) #calling the function to display
 def display_dataframe(df2, acronym_c):
     df2 = df2[df2['Acronym'] == country_to_acronym(countname)]
     participants = df2.groupby(['name','shortName', 'activityType', 'organizationURL']).agg({'ecContribution':['sum']})
-    return(participants) #esto no funciona
+    return(participants) #ya si funciona pero hay un error en alguna parte del df
 
 dataframe1 = display_dataframe(df2,acronym_c)
 st.write(dataframe1)
