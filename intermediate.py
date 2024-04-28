@@ -61,6 +61,6 @@ def display_dataframe(df2, acronym_c):
     return(participants) #ya si funciona pero hay un error en alguna parte del df
 
 dataframe1 = display_dataframe(df2,acronym_c)
-st.write(dataframe1)
+st.write(dataframe1)#quizas si llamamos esto participants?
 
 
