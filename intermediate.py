@@ -11,10 +11,7 @@ import pandas as pd
 import numpy as np
 #import matplotlib.pyplot
 import sqlite3
-
 from sqlite3 import connect
-
-
 import streamlit as st
 
 conn= connect('ecsel_database.db')
@@ -25,7 +22,6 @@ df2= pd.read_sql ('''SELECT p.*, pj.*, c.Country FROM PARTICIPANTS AS p, PROJECT
 WHERE p.projectID=pj.projectID AND p.country=c.Acronym''', conn)
 df2=df2.rename(columns={'country':'Acronym'})
 df2=df2.rename(columns={'acronym':'organization_acronym'})
-#conn.close()
 
 """Part 3:"""
 
@@ -45,7 +41,7 @@ def country_to_acronym(countname): #defining a function
       value = country_acronyms[countname] #getting the acronym associated with the key (name of the country)
       found = True #set parameter to trye
     else:
-      print("Not a country on the list, try again: ") #if the country doesn't exist in the database it will ask the user again to try again
+      st.write("Not a country on the list, try again: ") #if the country doesn't exist in the database it will ask the user again to try again
       found = False
     return(value)
 
@@ -55,14 +51,16 @@ st.write('The selected country is:', acronym_c) #calling the function to display
 
 @st.cache
 def display_dataframe(df2, acronym_c):
-    df2 = df2[df2['Acronym'] == country_to_acronym(countname)]
-    df2['ecContribution'] = pd.to_numeric(df2['ecContribution'], errors='coerce')
+    df2 = df2[df2['Acronym'] == acronym_c]
+    #country_to_acronym(countname)
+    #df2['ecContribution'] = pd.to_numeric(df2['ecContribution'], errors='coerce')
     # Drop rows with NaN values in ecContribution column
-    df2.dropna(subset=['ecContribution'], inplace=True)
-    participants = df2.groupby(['name','shortName', 'activityType', 'organizationURL']).agg({'ecContribution':['sum']})
-    return(participants) #ya si funciona pero hay un error en alguna parte del df
+    #df2.dropna(subset=['ecContribution'], inplace=True)
+    participants = df2.groupby(['name','shortName', 'activityType', 'organizationURL']).agg({'ecContribution':['sum']}).reset_index()
+    return(participants)
 
 dataframe1 = display_dataframe(df2,acronym_c)
 st.write(dataframe1)#quizas si llamamos esto participants?
 
+conn.close()
 
