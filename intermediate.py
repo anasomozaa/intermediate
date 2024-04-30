@@ -23,9 +23,9 @@ WHERE p.projectID=pj.projectID AND p.country=c.Acronym''', conn)
 df2=df2.rename(columns={'country':'Acronym'})
 df2=df2.rename(columns={'acronym':'organization_acronym'})
 
-"""Part 3:"""
+df2['ecContribution'] = df2['ecContribution'].astype(int)
 
-#conn = connect('ecsel_database.db')
+"""Part 3:"""
 
 country_list = df2['Country'] #selecting the country names list
 country_acronyms = {'Belgium': 'BE', 'Bulgaria': 'BG', 'Czechia': 'CZ', 'Denmark': 'DK', 'Germany':
