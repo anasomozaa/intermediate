@@ -58,7 +58,7 @@ def display_dataframe(df2, acronym_c):
     participants.dropna(subset=['ecContribution'], inplace=True)
     return(participants)
 
-dataframe1 = display_dataframe(participants,acronym_c)#df2
+dataframe1 = display_dataframe(df2,acronym_c)
 st.write(dataframe1)#quizas si llamamos esto participants?
 
 conn.close()
