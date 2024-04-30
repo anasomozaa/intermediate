@@ -52,10 +52,6 @@ st.write('The selected country is:', acronym_c) #calling the function to display
 @st.cache
 def display_dataframe(df2, acronym_c):
     df2 = df2[df2['Acronym'] == acronym_c]
-    #country_to_acronym(countname)
-    #df2['ecContribution'] = pd.to_numeric(df2['ecContribution'], errors='coerce')
-    # Drop rows with NaN values in ecContribution column
-    #df2.dropna(subset=['ecContribution'], inplace=True)
     participants = df2.groupby(['name','shortName', 'activityType', 'organizationURL']).agg({'ecContribution':['sum']})
     return(participants)
 
