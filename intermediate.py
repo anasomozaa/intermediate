@@ -23,7 +23,7 @@ WHERE p.projectID=pj.projectID AND p.country=c.Acronym''', conn)
 df2=df2.rename(columns={'country':'Acronym'})
 df2=df2.rename(columns={'acronym':'organization_acronym'})
 
-df2['ecContribution'] = df2['ecContribution'].astype(int)
+#df2['ecContribution'] = df2['ecContribution'].astype(int)
 
 """Part 3:"""
 
