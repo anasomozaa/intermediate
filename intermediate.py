@@ -23,7 +23,9 @@ WHERE p.projectID=pj.projectID AND p.country=c.Acronym''', conn)
 df2=df2.rename(columns={'country':'Acronym'})
 df2=df2.rename(columns={'acronym':'organization_acronym'})
 
-df2[0,3] = df2[0,3].astype(str)
+
+df2.iloc[0] = df2.iloc[0].astype(str)
+
 
 """Part 3:"""
 
