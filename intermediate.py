@@ -49,12 +49,23 @@ st.write('The selected country is:', acronym_c) #calling the function to display
 
 @st.cache
 def display_dataframe(df2, acronym_c):
-    df2 = df2[df2['Acronym'] == acronym_c]
-    df2_part = df2.groupby(['name','shortName', 'activityType', 'organizationURL']).agg({'ecContribution':['sum']})
-    return(df2_part)
+    df2 = df2[df2['Acronym'] == acronym_c]  #first we filter the db taking into account the selected country
+    df2_grouped = df2.groupby(['name','shortName', 'activityType', 'organizationURL']).agg({'ecContribution':'sum'}) #we group by the desired columns and sum the contributions
+    df2_part= df2_grouped.reset_index() #we reset the index
+    df2_part_sorted= df2_part.sort_values(by='ecContribution', ascending=False)
+    return(df2_part_sorted)
 
 participants = display_dataframe(df2,acronym_c)
 st.write(participants)
 
+def generate_project_dataframe(acronym_c):
+    query=f''
+    SELECT o.shortName, o.name, o.activityType, p.projectAcronym 
+    FROM organizations AS o
+    JOIN projects AS p ON o.oroganizationID=p.coordinatorID
+    WHERE o.country = '{acronym_c}'
+    ''
+    project_df=pd.read_sql(query,conn)
+    return project_df
 conn.close()
 
