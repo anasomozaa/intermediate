@@ -23,10 +23,6 @@ WHERE p.projectID=pj.projectID AND p.country=c.Acronym''', conn)
 df2=df2.rename(columns={'country':'Acronym'})
 df2=df2.rename(columns={'acronym':'organization_acronym'})
 
-
-df2.iloc[0] = df2.iloc[0].astype(str)
-
-
 """Part 3:"""
 
 country_list = df2['Country'] #selecting the country names list
@@ -54,7 +50,7 @@ st.write('The selected country is:', acronym_c) #calling the function to display
 @st.cache
 def display_dataframe(df2, acronym_c):
     df2 = df2[df2['Acronym'] == acronym_c]
-    df2_part = df2.groupby(['name','shortName', 'activityType', 'organizationURL']).agg({'ecContribution':['sum']})
+    df2_part = df2.groupby(['name','shortName', 'activityType', 'organizationURL', 'ecContribution']).agg({'ecContribution':['sum']})
     return(df2_part)
 
 participants = display_dataframe(df2,acronym_c)
