@@ -23,6 +23,8 @@ WHERE p.projectID=pj.projectID AND p.country=c.Acronym''', conn)
 df2=df2.rename(columns={'country':'Acronym'})
 df2=df2.rename(columns={'acronym':'organization_acronym'})
 
+ df2[1,4] = df2[1,4].astype(str)
+
 """Part 3:"""
 
 country_list = df2['Country'] #selecting the country names list
