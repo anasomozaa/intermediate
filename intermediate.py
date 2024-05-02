@@ -51,6 +51,7 @@ st.write('The selected country is:', acronym_c) #calling the function to display
 def display_dataframe(df2, acronym_c):
     df2 = df2[df2['Acronym'] == acronym_c]
     df2_part = df2.groupby(['name','shortName', 'activityType', 'organizationURL']).agg({'ecContribution':['sum']}).reset_index()
+    df2.columns = ['name', 'shortName', 'activityType', 'organizationURL', 'sum_ecContribution']
     return(df2_part)
 
 participants = display_dataframe(df2,acronym_c)
