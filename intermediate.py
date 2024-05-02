@@ -23,11 +23,6 @@ WHERE p.projectID=pj.projectID AND p.country=c.Acronym''', conn)
 df2=df2.rename(columns={'country':'Acronym'})
 df2=df2.rename(columns={'acronym':'organization_acronym'})
 
-#hola vale creo que si se usa esto funciona:
-df3 = df2.copy()
-for col in df2.columns:
-   df3[col] = df3[col].astype(str)
-
 """Part 3:"""
 
 country_list = df2['Country'] #selecting the country names list
@@ -53,9 +48,9 @@ st.write('The selected country is:', acronym_c) #calling the function to display
 
 
 @st.cache
-def display_dataframe(df3, acronym_c):
-    df3 = df3[df3['Acronym'] == acronym_c]
-    df2_part = df3.groupby(['name','shortName', 'activityType', 'organizationURL']).agg({'ecContribution':['sum']})
+def display_dataframe(df2, acronym_c):
+    df2 = df2[df2['Acronym'] == acronym_c]
+    df2_part = df2.groupby(['name','shortName', 'activityType', 'organizationURL']).agg({'ecContribution':['sum']})
     return(df2_part)
 
 participants = display_dataframe(df3,acronym_c)
