@@ -56,6 +56,7 @@ print('The selected country is:', acronym_c) #calling the function to display to
 def display_dataframe(df2, acronym_c):
     df2 = df2[df2['Acronym'] == acronym_c]
     df2_part = df2.groupby(['name','shortName', 'activityType', 'organizationURL']).agg({'ecContribution':['sum']})
+    df2_part = df2_part.sort_values(by=('ecContribution', 'sum'), ascending= False) #sorting by sum of ecContribution in descending order
     return(df2_part)
 
 participants = display_dataframe(df2,acronym_c)
