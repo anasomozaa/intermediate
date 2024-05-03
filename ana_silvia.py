@@ -15,13 +15,18 @@ from sqlite3 import connect
 #import streamlit as st
 
 conn= connect('ecsel_database.db')
+
+#read data from the different tables
 df_project= pd.read_sql ('SELECT * FROM PROJECTS', conn)
 df_participants= pd.read_sql ('SELECT * FROM PARTICIPANTS', conn)
 df_countries= pd.read_sql ('SELECT * FROM COUNTRIES', conn)
+
+#merge data from diferent tables into df2
 df2= pd.read_sql ('''SELECT p.*, pj.*, c.Country FROM PARTICIPANTS AS p, PROJECTS AS pj, COUNTRIES AS c
 WHERE p.projectID=pj.projectID AND p.country=c.Acronym''', conn)
 df2=df2.rename(columns={'country':'Acronym'})
 df2=df2.rename(columns={'acronym':'organization_acronym'})
+
 
 #df2['ecContribution'] = df2['ecContribution'].astype(int)
 
@@ -62,5 +67,12 @@ def display_dataframe(df2, acronym_c):
 participants = display_dataframe(df2,acronym_c)
 print(participants)
 ### st.write(participants)
+
+#part4: generate a new project dataframe with project coordinators from the selected country and order it in ascending order by 'shortName'
+project_coordinators_df= pd.read_sql('''SELECT p.shortName, p.name, p.activityType, pj.projectAcronym FROM PARTICIPANTS AS
+p INNER JOIN PROJECTS AS pj ON p.projectID = pj.projectID INNER JOIN COUNTRIES AS c on p.country=c.Acronym
+WHERE p.role='Coordinator' AND c.Country=? ORDER BY p.shortName ASC''', conn, params=[countname])
+print('Project coordinators from', countame)
+print(project_coordinators_df)
 
 conn.close()
