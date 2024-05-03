@@ -61,7 +61,7 @@ print('The selected country is:', acronym_c) #calling the function to display to
 def display_dataframe(df2, acronym_c):
     df2 = df2[df2['Acronym'] == acronym_c]
     df2_part = df2.groupby(['name','shortName', 'activityType', 'organizationURL']).agg({'ecContribution':['sum']})
-    df2_part = df2_part.sort_values(by=('ecContribution', 'sum'), ascending= False) #sorting by sum of ecContribution in descending order
+   # df2_part = df2_part.sort_values(by=('ecContribution', 'sum'), ascending= False) #sorting by sum of ecContribution in descending order
     return(df2_part)
 
 participants = display_dataframe(df2,acronym_c)
@@ -69,10 +69,10 @@ print(participants)
 ### st.write(participants)
 
 #part4: generate a new project dataframe with project coordinators from the selected country and order it in ascending order by 'shortName'
-project_coordinators_df= pd.read_sql('''SELECT p.shortName, p.name, p.activityType, pj.projectAcronym FROM PARTICIPANTS AS
-p INNER JOIN PROJECTS AS pj ON p.projectID = pj.projectID INNER JOIN COUNTRIES AS c on p.country=c.Acronym
-WHERE p.role='Coordinator' AND c.Country=? ORDER BY p.shortName ASC''', conn, params=[countname])
-print('Project coordinators from', countame)
-print(project_coordinators_df)
+#project_coordinators_df= pd.read_sql('''SELECT p.shortName, p.name, p.activityType, pj.projectAcronym FROM PARTICIPANTS AS
+#p INNER JOIN PROJECTS AS pj ON p.projectID = pj.projectID INNER JOIN COUNTRIES AS c on p.country=c.Acronym
+#WHERE p.role='Coordinator' AND c.Country=? ORDER BY p.shortName ASC''', conn, params=[countname])
+#print('Project coordinators from', countame)
+#print(project_coordinators_df)
 
 conn.close()
